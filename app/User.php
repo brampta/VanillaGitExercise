@@ -14,7 +14,7 @@ class User{
 	function get(){
 	    try {
 	        $user=$this->client->api('current_user')->show();
-	        var_dump($this->client->api('current_user')->show());
+	        //var_dump($this->client->api('current_user')->show());
 	        return $this->client->api('current_user');
 	    } catch (\RuntimeException $e) {
 	        return false;
