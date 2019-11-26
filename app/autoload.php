@@ -7,7 +7,7 @@
 
             
             spl_autoload_register(function ($class_name) {
-                $path= BP . '/app/' . $class_name . '.php';
+                $path= BP . '/app/code/' . $class_name . '.php';
                 $path = str_replace("\\", "/", $path);
                 //die($path);
                 @include $path;

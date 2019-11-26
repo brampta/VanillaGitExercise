@@ -1,12 +1,10 @@
 <?php
-//temp... for dev...
+//temp, for dev..
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-
 session_start();
-
 require __DIR__ . '/../app/bootstrap.php';
 
 
@@ -16,18 +14,16 @@ require __DIR__ . '/../app/bootstrap.php';
 if(isset($_GET['oauth'])){
     $oauth = new \VanillaGit\OAuth();
     $token = $oauth->getToken();
-    //var_dump($token);
     $_SESSION['oauth_token'] = $token;
     header('Location: ?');
 }else if(isset($_GET['oauthlogout'])){
     unset($_SESSION['oauth_token']);
+    header('Location: ?');
 }
 
 if(isset($_SESSION['oauth_token'])){
     //this is if you have a token in session, lets try to work with it
-    $github_api_client = new \Github\Client();
-    $user_class = new \VanillaGit\User($github_api_client);
-    //we try to log you in with your token
+    $user_class = new \VanillaGit\User();
     $user_class->oauth($_SESSION['oauth_token']);
     $user = $user_class->get();
     if($user){
