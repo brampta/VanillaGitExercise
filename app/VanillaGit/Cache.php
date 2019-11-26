@@ -3,7 +3,7 @@
 namespace VanillaGit;
 
 class Cache {
-    private $cache_location = __DIR__ . '/../cache';
+    private $cache_location = BP . '/cache';
     
     //save to cache
     //$key: name for cache element
@@ -12,11 +12,11 @@ class Cache {
     }
     //get from cache
     //$key: name for cache element
-    function get($key){
+    function get($key,$max_oldness=500){
         $cached_data=false;
-        if($file_contents=file_get_contents($this->cacheFileName($key))){
-            $cached_data['data']=unserialize($file_contents);
-            $cached_data['mtime']=filemtime($this->cacheFileName($key));
+        $cache_age=filemtime($this->cacheFileName($key));
+        if($cache_age>(time()-$max_oldness)){
+            $file_contents=file_get_contents($this->cacheFileName($key));
         }
         
         return $cached_data;

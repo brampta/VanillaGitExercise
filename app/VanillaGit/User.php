@@ -8,8 +8,9 @@ class User{
     {
         $this->client = $client;
     }
-	function authenticate($username,$password){
-	    $this->client->authenticate($username, $password, \Github\Client::AUTH_HTTP_PASSWORD);
+	function oauth($token){
+	    //for testing: $this->client->authenticate('user', 'password', \Github\Client::AUTH_HTTP_PASSWORD);
+	    $this->client->authenticate($token, \Github\Client::AUTH_URL_TOKEN);
 	}
 	function get(){
 	    try {

@@ -63,8 +63,6 @@ class HttpMethodsClient implements HttpClient
      */
     public function get($uri, array $headers = [])
     {
-        var_dump($uri);
-        var_dump($headers);
         return $this->send('GET', $uri, $headers, null);
     }
 
@@ -192,7 +190,6 @@ class HttpMethodsClient implements HttpClient
      */
     public function send($method, $uri, array $headers = [], $body = null)
     {
-        var_dump(get_class($this->requestFactory));
         return $this->sendRequest($this->requestFactory->createRequest(
             $method,
             $uri,

@@ -1,0 +1,14 @@
+<h2>Your Repositorahz:</h2>
+<?php
+foreach($data as $user){
+    echo '<div>';
+        echo '<div style="font-weight:bold;">';
+            $this->show('display_user.phtml',$user);
+        echo '</div>';
+        foreach($user['repos'] as $repo){
+            echo '<div>';
+                $this->show('display_repo.phtml',$repo);
+            echo '</div>';
+        }
+    echo '</div>';
+}
