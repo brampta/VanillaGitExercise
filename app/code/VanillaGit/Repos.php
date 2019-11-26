@@ -9,7 +9,7 @@ class Repos
         $user_info = $user->show();
         $cache_class = new \VanillaGit\Cache();
         $cache_key = $user_info['login'] . '_repos';
-        $potential_cache = $cache_class->get($cache_key, 5);
+        $potential_cache = $cache_class->get($cache_key, (24*3600));
         if ($potential_cache) {
             $repositories = $potential_cache['data'];
             echo "got from cache..<br>";
